@@ -1,0 +1,120 @@
+.formDrawer {
+  align-items: center;
+  background-color: white;
+  box-shadow: -2px 0 8px 0 rgb(0 0 0 / 15%);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  padding: 4rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: transform 800ms ease-in-out;
+  width: 486px;
+}
+
+.formDrawer.open {
+  transform: translateX(0);
+}
+
+.formDrawer.closed {
+  transform: translateX(250%);
+}
+
+.formDrawer .closeIcon {
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 0 rgb(0 0 0 / 20%);
+  height: 32px;
+  left: 24px;
+  position: absolute;
+  top: 24px;
+  transition: background-color 100ms ease-in-out, fill 100ms ease-in-out;
+  width: 32px;
+}
+
+.formDrawer .closeIcon:hover {
+  background-color: #2e2e2e;
+  cursor: pointer;
+  fill: white;
+}
+
+.formDrawer h1 {
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 0 3rem;
+  width: 100%;
+}
+
+.formControl.calendar {
+  position: relative;
+}
+
+.calendarIcon {
+  bottom: 12px;
+  fill: #a4a4a4;
+  height: 24px;
+  position: absolute;
+  right: 64px;
+  width: 24px;
+}
+
+.formControl label {
+  margin-bottom: 8px;
+}
+
+.formControl input,
+.formControl select {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 12px;
+  box-shadow: 0 0 8px 0 rgb(0 0 0 / 10%);
+  color: black;
+  font-family: inherit;
+  height: 48px;
+  padding: 0 1rem;
+}
+
+.formControl input:focus,
+.formControl select:focus {
+  box-shadow: 0 0 8px 4px rgb(37 175 255 / 10%);
+  border: 1px solid rgb(19, 142, 212);
+  outline: none;
+}
+
+.formDrawer button:focus {
+  box-shadow: 0 0 8px 4px rgb(37 175 255 / 50%);
+  outline: none;
+}
+
+.formDrawer button {
+  background-color: #1f84ef;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  height: 48px;
+  width: calc(100% - 6rem);
+}
+
+.formDrawer button:hover:not([disabled]) {
+  background-color: #1267c2;
+  cursor: pointer;
+}
+
+.formDrawer button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.duplicateError {
+  color: #f11348;
+  margin-top: 1rem;
+}

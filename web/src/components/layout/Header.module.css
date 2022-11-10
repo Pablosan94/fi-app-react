@@ -1,0 +1,26 @@
+.header {
+  align-items: center;
+  background-color: #2e2e2e;
+  display: flex;
+  height: 80px;
+  padding: 0 4rem;
+  width: 100vw;
+}
+
+.header a {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 24px;  
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #2f94f3;
+}
+
+.logo {
+  height: 48px;
+  width: 48px;
+}

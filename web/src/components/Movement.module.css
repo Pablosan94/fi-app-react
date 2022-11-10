@@ -1,0 +1,32 @@
+.movement {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  padding: 0.25rem 0;
+  text-align: center;
+  transition: background-color 250ms ease-in-out;
+  width: 100%;
+}
+
+.movement:hover {
+  cursor: pointer;
+  background-color: #1f84ef10;
+}
+
+.movement.selected {
+  background-color: #1f84ef20;
+}
+
+.movement.positive {
+  color: #06e07f;
+}
+
+.movement.negative {
+  color: #e3073c;
+}
+
+.movement .date {
+  color: #2e2e2e;
+  font-size: 12px;
+}
