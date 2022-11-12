@@ -38,3 +38,14 @@ export async function deleteOperation(id: number): Promise<Operation> {
   });
   return response.json();
 }
+
+export async function batchDeleteOperations(body: {
+  operationIds: number[];
+}): Promise<Operation[]> {
+  const response = await fetch(`http://localhost:3000/api/operations`, {
+    method: 'DELETE',
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return response.json();
+}

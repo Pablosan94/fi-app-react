@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateOperationDto } from './dto/create-operation.dto';
+import { DeleteOperationsDto } from './dto/delete-operations.dto';
 import { GetOperationsParams } from './dto/get-operations.params';
 import { OperationsService } from './operations.service';
 
@@ -34,5 +35,10 @@ export class OperationsController {
   @Delete(':id')
   removeOperation(@Param('id', ParseIntPipe) id: number) {
     return this.operationsService.removeOperation(id);
+  }
+
+  @Delete()
+  batchDelete(@Body() body: DeleteOperationsDto) {
+    return this.operationsService.removeOperations(body);
   }
 }

@@ -16,7 +16,9 @@ import Movement from './components/Movement';
 import MovementForm from './components/MovementForm';
 import Card from './components/ui/Card';
 import {
+  batchDeleteOperations,
   deleteOperation,
+  DeleteOperationsDto,
   fetchOperations,
 } from './services/operations.service';
 import { AccountContext } from './store/account.context';
@@ -45,7 +47,8 @@ function App() {
   });
 
   const removeOperationMutation = useMutation({
-    mutationFn: (id: number) => deleteOperation(id),
+    mutationFn: (body: { operationIds: number[] }) =>
+      batchDeleteOperations(body),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['operations', currentDate] });
       resetSelectedOperations();
@@ -64,8 +67,10 @@ function App() {
   }, [fetchedOperations]);
 
   const handleDelete = () => {
+    const ids: number[] = [];
     selectedOperations.forEach((operation) => {
-      removeOperationMutation.mutate(operation.id);
+      ids.push(operation.id);
+      removeOperationMutation.mutate({ operationIds: ids });
     });
   };
 

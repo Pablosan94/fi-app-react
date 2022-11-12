@@ -10,6 +10,7 @@ import { CreateOperationDto } from './dto/create-operation.dto';
 import { GetOperationsParams } from './dto/get-operations.params';
 import { Operation } from './entities/operation.entity';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
+import { DeleteOperationsDto } from './dto/delete-operations.dto';
 
 @Injectable()
 export class OperationsService {
@@ -31,12 +32,14 @@ export class OperationsService {
             from: query.from,
             to: query.to,
           })
+          .orderBy('op.date', 'ASC')
           .getMany();
       } else if (query.from && !query.to) {
         operations = await queryBuilder
           .where('op.date >= :from', {
             from: query.from,
           })
+          .orderBy('op.date', 'ASC')
           .getMany();
       } else {
         const today = new Date();
@@ -47,6 +50,7 @@ export class OperationsService {
             from: monthStart,
             to: monthEnd,
           })
+          .orderBy('op.date', 'ASC')
           .getMany();
       }
 
@@ -81,6 +85,23 @@ export class OperationsService {
     } catch (error) {
       this.handleDBExceptions(error);
     }
+  }
+
+  async removeOperations(body: DeleteOperationsDto) {
+    const removedOperations: Operation[] = [];
+
+    for (const id of body.operationIds) {
+      try {
+        const operation = await this.getOperation(id);
+        removedOperations.push(
+          await this.operationRepository.remove(operation),
+        );
+      } catch (error) {
+        this.handleDBExceptions(error);
+      }
+    }
+
+    return removedOperations;
   }
 
   private handleDBExceptions(error: any) {

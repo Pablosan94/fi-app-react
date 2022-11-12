@@ -54,6 +54,7 @@ const MovementForm = () => {
         setAlreadyExistsError(false);
         // closeDrawer();
         resetForm();
+        setFocus('amount');
       } else {
         setAlreadyExistsError(true);
       }
@@ -84,6 +85,7 @@ const MovementForm = () => {
             <label htmlFor="amount">Cantidad</label>
             <input
               type="number"
+              step={0.01}
               id="amount"
               {...register('amount', { required: true })}
             />
